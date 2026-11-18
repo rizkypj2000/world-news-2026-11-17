@@ -117,3 +117,56 @@ const ART = {
     crash: `<svg viewBox="0 0 64 64"><rect width="64" height="64" rx="6" fill="#e6ecf2"/><path d="M0 52 L20 36 L30 44 L44 28 L64 46 V64 H0 Z" fill="#fff" stroke="#bcc6d0"/><path transform="translate(12 18) rotate(28)" d="M0 6 L34 4 L40 6 L34 8 L0 8 Z M14 6 L22 -6 L26 -6 L22 6 Z" fill="#4a505c"/>${smoke(36, 34, 0.5)}</svg>`,
   },
 };
+
+// ---- v7: illustrated banners for the ten secondary tiles (190x64 each) ----
+const big = (x, y, t, size = 22, fill = '#1d1f24', anchor = 'start') =>
+  `<text x="${x}" y="${y}" font-family="Georgia, serif" font-size="${size}" font-weight="700" fill="${fill}" text-anchor="${anchor}">${t}</text>`;
+const small = (x, y, t, fill = '#1d1f24', anchor = 'start', size = 8.5) =>
+  `<text x="${x}" y="${y}" font-family="Segoe UI, Arial" font-size="${size}" font-weight="800" letter-spacing=".8" fill="${fill}" text-anchor="${anchor}">${t}</text>`;
+const tri = (x, y, w, colors) => colors.map((c, i) => `<rect x="${x}" y="${y + (i * w * 0.6) / colors.length}" width="${w}" height="${(w * 0.6) / colors.length}" fill="${c}"/>`).join('');
+const mxFlag = (x, y, w = 34) => `<rect x="${x}" y="${y}" width="${w / 3}" height="${w * 0.6}" fill="#006847"/><rect x="${x + w / 3}" y="${y}" width="${w / 3}" height="${w * 0.6}" fill="#fff"/><rect x="${x + (2 * w) / 3}" y="${y}" width="${w / 3}" height="${w * 0.6}" fill="#ce1126"/><circle cx="${x + w / 2}" cy="${y + w * 0.3}" r="${w * 0.07}" fill="#8a5a2b"/><rect x="${x}" y="${y}" width="${w}" height="${w * 0.6}" fill="none" stroke="#999" stroke-width=".5"/>`;
+const boFlag = (x, y, w = 34) => tri(x, y, w, ['#d52b1e', '#f9e300', '#007934']);
+const mnFlag = (x, y, w = 34) => { const h = w * 0.5; return `<rect x="${x}" y="${y}" width="${w / 3}" height="${h}" fill="#c4272f"/><rect x="${x + w / 3}" y="${y}" width="${w / 3}" height="${h}" fill="#015197"/><rect x="${x + (2 * w) / 3}" y="${y}" width="${w / 3}" height="${h}" fill="#c4272f"/><circle cx="${x + w / 6}" cy="${y + h * 0.3}" r="${w * 0.045}" fill="#f9cf02"/><rect x="${x + w / 6 - w * 0.04}" y="${y + h * 0.45}" width="${w * 0.08}" height="${h * 0.38}" fill="#f9cf02"/>`; };
+const euFlag = (x, y, w = 40) => { const h = w * 0.66; let s = `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#003399"/>`; for (let i = 0; i < 12; i++) { const a = (i * Math.PI) / 6; s += `<polygon fill="#ffcc00" points="${star(x + w / 2 + Math.cos(a) * h * 0.33, y + h / 2 + Math.sin(a) * h * 0.33, h * 0.07)}"/>`; } return s; };
+const jpFlag = (x, y, w = 34) => `<rect x="${x}" y="${y}" width="${w}" height="${w * 0.66}" fill="#fff" stroke="#bbb" stroke-width=".6"/><circle cx="${x + w / 2}" cy="${y + w * 0.33}" r="${w * 0.2}" fill="#bc002d"/>`;
+const cdFlag = (x, y, w = 34) => { const h = w * 0.75; return `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#007fff"/><polygon points="${x},${y + h} ${x},${y + h * 0.78} ${x + w},${y} ${x + w},${y + h * 0.22}" fill="#f7d618"/><polygon points="${x},${y + h * 0.93} ${x},${y + h * 0.85} ${x + w},${y + h * 0.07} ${x + w},${y + h * 0.15}" fill="#ce1021"/><polygon fill="#f7d618" points="${star(x + w * 0.17, y + h * 0.2, h * 0.14)}"/>`; };
+const mzFlag = (x, y, w = 34) => { const h = w * 0.66; return tri(x, y, w, ['#007168', '#000000', '#fce100']) + `<polygon points="${x},${y} ${x + w * 0.42},${y + h / 2} ${x},${y + h}" fill="#d21034"/>`; };
+const bars = (x, y, hs, fill, w = 9, gap = 4) => hs.map((h, i) => `<rect x="${x + i * (w + gap)}" y="${y - h}" width="${w}" height="${h}" fill="${fill}"/>`).join('');
+const inner = svg => svg.replace(/<\/?svg[^>]*>/g, '');
+const sv = (bg, body) => `<svg viewBox="0 0 190 64"><rect width="190" height="64" fill="${bg}"/>${body}</svg>`;
+
+ART.banner = {
+  nvidia: sv('#14161b', `<g transform="translate(8 10) scale(.7)">${inner(ART.icon.chip)}</g>
+    ${bars(46, 56, [14, 24, 34, 46], '#76b900')}
+    ${big(184, 30, '$115.8bn', 19, '#9be15d', 'end')}${small(182, 46, '+103% A YEAR', '#ffffff', 'end')}`),
+  dow: sv('#fbeeee', `<path d="M8 12 L30 18 L46 14 L68 34 L86 30 L102 50" stroke="#b3261e" stroke-width="3.5" fill="none"/>
+    <path d="M94 50 h8 v-8" stroke="#b3261e" stroke-width="3.5" fill="none"/>
+    ${big(184, 32, '−849', 24, '#b3261e', 'end')}${small(184, 46, 'DOW −1.6%', '#1d1f24', 'end')}`),
+  ebola: sv('#eaf5ef', `${cdFlag(8, 9, 40)}<g transform="translate(52 12) scale(.6)">${inner(ART.icon.virus)}</g>
+    ${big(184, 32, '11,000+', 19, '#0b7a55', 'end')}${small(184, 46, 'CASES · DR CONGO', '#1d1f24', 'end')}`),
+  measles: sv('#f6eef6', `${usFlag(8, 10, 36)}${mxFlag(52, 10, 36)}${boFlag(96, 10, 36)}
+    ${small(26, 42, 'US', '#1d1f24', 'middle')}${small(70, 42, 'MEXICO', '#1d1f24', 'middle')}${small(114, 42, 'BOLIVIA', '#1d1f24', 'middle')}
+    ${[[150, 16], [166, 26], [156, 36], [176, 14], [178, 40]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="4" fill="#d9363e"/>`).join('')}
+    <rect x="8" y="49" width="174" height="11" fill="#6a3d9a"/>${small(95, 57.5, 'MEASLES-FREE STATUS REVOKED', '#fff', 'middle', 7.5)}`),
+  mongolia: sv('#f1edf7', `${mnFlag(8, 14, 42)}<g transform="translate(56 12) scale(.6)">${inner(ART.icon.resign)}</g>
+    ${big(184, 32, '$25m', 22, '#6a3d9a', 'end')}${small(184, 46, 'BRIBE CLAIM, DENIED', '#1d1f24', 'end', 7.5)}`),
+  rwanda: sv('#eef2f8', `${euFlag(8, 10, 44)}${small(30, 52, 'FIVE EU STATES', '#1d1f24', 'middle', 7.5)}
+    <path d="M58 22 Q112 -6 150 30" stroke="#1d5fa8" stroke-width="2" stroke-dasharray="4 3" fill="none"/>
+    <path transform="translate(100 3) rotate(16)" d="M0 6 L16 4 L20 6 L16 8 L0 8 Z M7 6 L11 0 L13 0 L11 6 Z" fill="#1d5fa8"/>
+    <path d="M160 18 a9 9 0 0 1 18 0 c0 8 -9 16 -9 16 s-9 -8 -9 -16 Z" fill="#13804f"/><circle cx="169" cy="18" r="3.4" fill="#fff"/>
+    ${small(169, 50, 'RWANDA', '#1d1f24', 'middle')}`),
+  cop: sv('#eef4ec', `<g transform="translate(4 8) scale(.7)">${inner(ART.icon.climate)}</g>
+    <rect x="52" y="10" width="28" height="44" fill="#fff" stroke="#888"/><path d="M56 20 h20 M56 27 h20 M56 34 h14 M56 41 h17" stroke="#999" stroke-width="2"/>
+    ${small(66, 51, 'DRAFT', '#b3261e', 'middle', 7)}
+    ${big(184, 30, 'COP31', 19, '#2e7d32', 'end')}${small(184, 45, 'ANTALYA', '#1d1f24', 'end', 8)}`),
+  japan: sv('#e9eef4', `${jpFlag(8, 10, 40)}
+    <path d="M0 52 C40 44 70 56 110 46 S170 40 190 46" stroke="#b3261e" stroke-width="1.6" stroke-dasharray="5 3" fill="none"/>
+    ${small(8, 61, 'JAPANESE AIRSPACE', '#b3261e', 'start', 7)}
+    ${[[70, 22], [118, 34]].map(([x, y]) => `<path transform="translate(${x} ${y})" d="M0 0 L40 0 L32 -4 L20 -4 L14 -16 L8 -16 L11 -4 L3 -4 L0 -9 L-4 -9 L-3 0 Z M14 0 L8 12 L13 12 L22 0 Z" fill="#4a505c"/>`).join('')}
+    ${small(184, 14, '2 RUSSIAN PLANES', '#1d1f24', 'end', 7.5)}`),
+  serbia: sv('#f4eef0', `<g transform="translate(63 -2) scale(1)">${inner(ART.icon.parliament)}</g>
+    ${big(8, 40, '140', 22, '#c8102e')}${small(8, 52, 'STUDENTS', '#1d1f24', 'start', 7.5)}
+    ${big(184, 40, '103', 22, '#0c4076', 'end')}${small(184, 52, 'VUČIĆ BLOC', '#1d1f24', 'end', 7.5)}`),
+  mozambique: sv('#eef4ef', `${mzFlag(8, 14, 40)}<g transform="translate(54 12) scale(.6)">${inner(ART.icon.gavel)}</g>
+    ${big(184, 32, '5 charges', 17, '#13804f', 'end')}${small(184, 46, 'MAPUTO COURT', '#1d1f24', 'end', 7.5)}`),
+};

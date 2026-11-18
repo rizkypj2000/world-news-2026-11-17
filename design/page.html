@@ -13,38 +13,42 @@
   body { background: var(--paper); color: var(--ink); font-family: "Segoe UI", Arial, sans-serif; display: flex; flex-direction: column; }
   .serif { font-family: Georgia, "Times New Roman", serif; }
 
-  header { background: var(--ink); color: #fff; padding: 9px 18px 10px; }
-  header .row { display: flex; justify-content: space-between; font-size: 13.5px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
-  header .row .l { color: #f2c14e; } header .row .r { color: #e8e8ea; }
-  header h1 { font-size: 66px; line-height: 1; font-weight: 700; letter-spacing: -.01em; margin-top: 1px; white-space: nowrap; }
+  /* v7: light broadsheet masthead, the date as wide as the page */
+  header { background: var(--paper); color: var(--ink); padding: 8px 14px 0; }
+  header .row { display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+  header .row .l { color: #b3261e; } header .row .r { color: var(--ink); }
+  header h1 { font-size: 70px; line-height: 1; font-weight: 700; letter-spacing: -.012em; margin-top: 0; white-space: nowrap; text-align: center;
+              border-bottom: 5px double var(--rule); padding-bottom: 5px; }
   .stripe { height: 5px; background: linear-gradient(90deg, var(--eu) 0 17%, var(--me) 17% 34%, var(--as) 34% 51%, var(--af) 51% 68%, var(--am) 68% 85%, var(--oc) 85%); }
 
-  main { flex: 1; display: flex; flex-direction: column; padding: 9px 14px 0; gap: 8px; }
+  main { flex: 1; display: flex; flex-direction: column; padding: 7px 14px 0; gap: 7px; }
   .num { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; color: #fff; font-size: 11px; font-weight: 800; background: var(--c); flex: none; }
   .tag { font-size: 11px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; color: var(--c); display: flex; align-items: center; gap: 5px; }
 
   .heroes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
   .hero { background: #fff; border-top: 5px solid var(--c); display: flex; flex-direction: column; }
-  .hero .art { height: 106px; overflow: hidden; } .hero .art svg { width: 100%; height: 100%; display: block; }
+  .hero .art { height: 118px; overflow: hidden; } .hero .art svg { width: 100%; height: 100%; display: block; }
   .hero .txt { padding: 6px 9px 7px; }
   .hero h2 { font-size: 21px; line-height: 1.08; margin: 3px 0 4px; }
   .hero p { font-size: 12.8px; line-height: 1.3; color: #2e2e35; }
 
   .tiles { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
-  .tile { background: #fff; border-top: 4px solid var(--c); padding: 5px 8px 7px; position: relative; }
-  .tile .ic { position: absolute; top: 5px; right: 6px; width: 32px; height: 32px; } .tile .ic svg { width: 100%; height: 100%; }
-  .tile .tag { font-size: 10px; letter-spacing: .06em; white-space: nowrap; padding-right: 38px; }
-  .tile h3 { font-size: 16.2px; line-height: 1.12; margin-top: 4px; padding-right: 34px; min-height: 50px; }
-  .tile p { font-size: 12px; line-height: 1.28; color: #33333b; margin-top: 4px; }
+  /* v7: every secondary story gets its own drawn banner carrying its key fact */
+  .tile { background: #fff; border-top: 4px solid var(--c); display: flex; flex-direction: column; }
+  .tile .ban { height: 61px; overflow: hidden; } .tile .ban svg { width: 100%; height: 100%; display: block; }
+  .tile .body { padding: 5px 8px 6px; }
+  .tile .tag { font-size: 10px; letter-spacing: .06em; white-space: nowrap; }
+  .tile h3 { font-size: 15px; line-height: 1.1; margin-top: 3px; }
+  .tile p { font-size: 11.6px; line-height: 1.25; color: #33333b; margin-top: 3px; }
 
   .lower { flex: 1; display: grid; grid-template-columns: 410px 1fr; gap: 12px; border-top: 3px solid var(--rule); padding-top: 6px; min-height: 0; }
   .lower h4 { font-size: 11.5px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 4px; }
-  .mapbox svg { width: 410px; height: 162px; display: block; background: #e7eef2; }
+  .mapbox svg { width: 410px; height: 190px; display: block; background: #e7eef2; }
   .legend { display: flex; flex-wrap: wrap; gap: 3px 10px; margin-top: 5px; font-size: 11px; font-weight: 600; color: var(--muted); }
   .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 4px; vertical-align: -1px; }
   .also { columns: 2; column-gap: 10px; font-size: 11.6px; line-height: 1.18; }
   .also li > span { overflow: hidden; text-overflow: clip; }
-  .also li { list-style: none; display: flex; gap: 5px; break-inside: avoid; margin-bottom: 2.2px; white-space: nowrap; }
+  .also li { list-style: none; display: flex; gap: 5px; break-inside: avoid; margin-bottom: 1.5px; white-space: nowrap; }
   .numbers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 7px; }
   .numbers div { background: var(--ink); color: #fff; border-radius: 4px; padding: 5px 7px 6px; }
   .numbers b { display: block; font-family: Georgia, serif; font-size: 22px; line-height: 1; color: #f2c14e; }
@@ -58,7 +62,7 @@
 </head>
 <body>
 <header>
-  <div class="row"><span class="l">The world's news in one image</span><span class="r">48 stories · 6 continents · one day</span></div>
+  <div class="row"><span class="l">The world's news in one image</span><span class="r">44 stories · 6 continents · one day</span></div>
   <h1 class="serif">Tuesday 17 November 2026</h1>
 </header>
 <div class="stripe"></div>
@@ -69,14 +73,8 @@
   <section class="lower">
     <div class="mapbox">
       <h4>Where it happened · numbers match the stories</h4>
-      <svg id="map" viewBox="0 0 410 162"></svg>
+      <svg id="map" viewBox="0 0 410 190"></svg>
       <div class="legend" id="legend"></div>
-      <div class="numbers">
-        <div><b>1,441</b><span>drones Russia says it downed overnight</span></div>
-        <div><b>11,000+</b><span>Ebola cases in DR Congo</span></div>
-        <div><b>$115.8bn</b><span>Nvidia's record quarter</span></div>
-        <div><b>−849</b><span>points off the Dow</span></div>
-      </div>
     </div>
     <div>
       <h4>Also on Tuesday 17 November</h4>
@@ -95,7 +93,7 @@ const R = { eu: ['Europe', 'var(--eu)', '#1f5fae'], me: ['Middle East', 'var(--m
 // [region, topic, headline, detail, art, lon, lat, pin offset]
 const HEROES = [
   ['eu', 'Ukraine war', 'Ukraine drops a span of the Crimean Bridge into the sea',
-   'Overnight strike on the Kerch Bridge; officials say 2 killed. Zelensky: "an unprecedented operation". Russia says it downed 1,441 drones.', 'kerch', 36.5, 45.3, [7, -9]],
+   'Officials say 2 killed. Zelensky hails "an unprecedented operation"; Russia says it downed 1,441 drones.', 'kerch', 36.5, 45.3, [7, -9]],
   ['me', 'Iran war · Gulf', 'Iran drones target US radar in Bahrain; US hits back',
    'US jets hit a missile site on Iran\'s Qeshm island. Iran says two tankers hit mines and burn in Hormuz.', 'gulf', 50.6, 26.1, [4, 2]],
   ['as', 'Diplomacy', 'Trump in Manila as Quad seals critical-minerals deals',
@@ -103,16 +101,16 @@ const HEROES = [
 ];
 
 const TILES = [
-  ['am', 'US · Tech', 'Nvidia posts a record $115.8bn quarter', 'First results since Jensen Huang quit; revenue up 103%.', 'chip', -122, 37.4, [0, 0]],
-  ['am', 'US · Markets', 'Dow tumbles 849 points', 'Down 1.6%; S&P 500 −1.0%, Nasdaq −0.7%.', 'dow', -74, 40.7, [3, 2]],
-  ['af', 'DR Congo · Health', 'Ebola cases pass 11,000', 'About 5,400 dead; spreading at a record pace, Reuters finds.', 'virus', 25, 1, [-4, 0]],
-  ['am', 'Americas · Health', 'US, Mexico, Bolivia lose measles-free status', 'PAHO ruling; the US has 5,400+ cases in 2026.', 'measles', -99, 19.4, [0, 0]],
-  ['as', 'Mongolia', 'President Khurelsukh says he will resign', 'He denies a $25m railway bribe claim.', 'resign', 107, 47.9, [0, 0]],
-  ['eu', 'EU · Migration', 'Five EU states plan a Rwanda asylum hub', 'Austria, Denmark, Germany, Greece and the Netherlands.', 'rwanda', 30, -2, [10, 6]],
-  ['gl', 'COP31 · Climate', 'Climate talks split over fossil fuels', 'Antalya draft urges "accelerated action"; Arab Group objects.', 'climate', 30.7, 36.9, [-8, 10]],
-  ['as', 'Japan · Defence', 'Japan scrambles jets at Russian incursion', 'Two aircraft entered its airspace off Fukuoka.', 'jets', 130.4, 33.6, [4, 0]],
-  ['eu', 'Serbia', 'Student-led majority takes its seats', '140 of 250 seats; Vučić\'s bloc has 103.', 'parliament', 20.5, 44.8, [-14, -8]],
-  ['af', 'Mozambique', 'Opposition leader Mondlane goes on trial', 'Five charges, up to 24 years; he denies all.', 'gavel', 32.6, -26, [0, 0]],
+  ['am', 'US · Tech', 'Nvidia posts a record $115.8bn quarter', 'First results since Jensen Huang quit.', 'nvidia', -122, 37.4, [0, 0]],
+  ['am', 'US · Markets', 'Dow tumbles 849 points', 'AI stocks lead the slide; S&P 500 −1.0%.', 'dow', -74, 40.7, [3, 2]],
+  ['af', 'DR Congo · Health', 'Ebola cases pass 11,000 in DR Congo', 'About 5,400 dead; spreading at a record pace.', 'ebola', 25, 1, [-4, 0]],
+  ['am', 'Americas · Health', 'Three nations lose measles-free status', 'PAHO: US, Mexico, Bolivia; US 5,400+ cases.', 'measles', -99, 19.4, [0, 0]],
+  ['as', 'Asia · Politics', 'Mongolia\'s president says he will resign', 'Khurelsukh denies a railway bribe claim.', 'mongolia', 107, 47.9, [0, 0]],
+  ['eu', 'Europe · Migration', 'Five EU states plan a Rwanda asylum hub', 'Austria, Denmark, Germany, Greece, Netherlands.', 'rwanda', 30, -2, [10, 6]],
+  ['gl', 'Global · Climate', 'COP31 split over fossil-fuel wording', 'Draft urges "accelerated action"; Arab Group objects.', 'cop', 30.7, 36.9, [-8, 10]],
+  ['as', 'Asia · Defence', 'Japan scrambles jets at Russian incursion', 'Two aircraft entered its airspace off Fukuoka.', 'japan', 130.4, 33.6, [4, 0]],
+  ['eu', 'Europe · Politics', 'Serbia\'s student-led parliament meets', '140 of 250 seats; Vučić\'s bloc has 103.', 'serbia', 20.5, 44.8, [-14, -8]],
+  ['af', 'Africa · Justice', 'Mondlane goes on trial in Mozambique', 'Opposition leader faces 5 charges; denies all.', 'mozambique', 32.6, -26, [0, 0]],
 ];
 
 // [region, place, text, lon, lat]
@@ -135,7 +133,6 @@ const ALSO = [
   ['me', 'Iraq, Jordan', 'block the Telegram messaging app', 44.4, 33.3],
   ['am', 'US', 'CNN: Iran weighed "dirty bomb" plot; Iran denies', -77, 38.9],
   ['am', 'Pentagon', 'fails its ninth straight audit', -77.1, 38.6],
-  ['am', 'US', 'new rule curbs AI-chip access abroad', -77.3, 39.3],
   ['am', 'California', 'state sues OpenAI', -121.5, 38.6],
   ['as', 'Bangladesh', 'police tear-gas wage protesters', 90.4, 23.8],
   ['as', 'India', 'bus plunges into gorge, 8 dead', 78.5, 30.3],
@@ -147,10 +144,7 @@ const ALSO = [
   ['af', 'Ethiopia', 'trades accusations with Sudan', 38.7, 9],
   ['gl', 'UN', '128 states open killer-robot talks', 6.1, 46.2],
   ['eu', 'Football', 'Norway beat Denmark 3–2', 12.5, 55.7],
-  ['eu', 'Football', 'Portugal beat Wales 3–2', -3.2, 51.5],
   ['af', 'Football', 'Togo beat Algeria 3–0', 1.2, 6.1],
-  ['eu', 'Bosnia', 'new three-member presidency sworn in', 18.4, 43.9],
-  ['oc', 'Air Niugini', 'Auckland flights back after 26 years', 174.8, -36.9],
   ['oc', 'PNG', 'Marape defends closing Taiwan office', 147, -9.4],
   ['oc', 'Australia', 'Philippines defence statement', 149.1, -35.3],
 ];
@@ -164,10 +158,10 @@ document.getElementById('heroes').innerHTML = HEROES.map(([r, topic, h, p, art, 
     <div class="tag">${num(n, R[r][1])}${R[r][0]} · ${topic}</div><h2 class="serif">${h}</h2><p>${p}</p></div></article>`;
 }).join('');
 
-document.getElementById('tiles').innerHTML = TILES.map(([r, topic, h, p, icon, lon, lat, off]) => {
+document.getElementById('tiles').innerHTML = TILES.map(([r, topic, h, p, banner, lon, lat, off]) => {
   n++; pins.push({ n, lon, lat, color: R[r][2], dx: off[0], dy: off[1] });
-  return `<article class="tile" style="--c:${R[r][1]}"><div class="ic">${ART.icon[icon]}</div>
-    <div class="tag">${num(n, R[r][1])}${topic}</div><h3 class="serif">${h}</h3><p>${p}</p></article>`;
+  return `<article class="tile" style="--c:${R[r][1]}"><div class="ban">${ART.banner[banner]}</div><div class="body">
+    <div class="tag">${num(n, R[r][1])}${topic}</div><h3 class="serif">${h}</h3><p>${p}</p></div></article>`;
 }).join('');
 
 document.getElementById('also').innerHTML = ALSO.map(([r, place, text, lon, lat]) => {
@@ -178,7 +172,7 @@ document.getElementById('also').innerHTML = ALSO.map(([r, place, text, lon, lat]
 // small dots first, numbered pins on top
 drawWorldMap(document.getElementById('map'), [...pins.filter(p => p.small), ...pins.filter(p => !p.small)], { step: 2.6, dot: 1.25 });
 document.getElementById('legend').innerHTML = ['eu', 'me', 'as', 'af', 'am', 'oc', 'gl']
-  .map(k => `<span><i style="background:${R[k][2]}"></i>${R[k][0]}</span>`).join('') + '<span>· big pins: stories 1–13, dots: 14–48</span>';
+  .map(k => `<span><i style="background:${R[k][2]}"></i>${R[k][0]}</span>`).join('') + '<span>· big pins: stories 1–13, dots: 14–44</span>';
 </script>
 </body>
 </html>
