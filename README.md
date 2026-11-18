@@ -8,9 +8,9 @@ An entry for the make.fun bounty [Sum up 17 November's world news in one image](
 
 ![entry](entry.png)
 
-A one-page front page of 40 stories from six continents: three illustrated lead
+A one-page front page of 48 stories from six continents: three illustrated lead
 stories, ten tiles, a dot-matrix world map with numbered pins, the day in numbers
-and a list of 27 more stories. Every story happened or was first reported on
+and a list of 35 more stories. Every story happened or was first reported on
 Tuesday 17 November 2026.
 
 ## How it works
